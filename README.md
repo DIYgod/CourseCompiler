@@ -23,6 +23,10 @@ syn.cpp 调用 lex.cpp 并进行语法分析
 
 从test.txt输入
 
+实现错误处理，可根据调试信息自行添加错误信息
+
+实现词法分析语法分析过程的展示
+
 &nbsp;
 
 博客：<a href="http://www.anotherhome.net/">Anotherhome</a>
