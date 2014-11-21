@@ -27,6 +27,6 @@ LR(1)分析法的实现
 
 + 实现词法分析语法分析过程的展示
 
-博客
+Blog
 -------
 + <a href="http://www.anotherhome.net/">Anotherhome</a>
