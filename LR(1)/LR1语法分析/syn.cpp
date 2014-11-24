@@ -1,4 +1,5 @@
-/*赋值语句SLR(1)语法分析程序
+/*
+*赋值语句SLR(1)语法分析程序
 *实现部分错误处理，可根据调试信息自行添加错误信息
 *实现词法分析语法分析过程的展示
 */
@@ -21,19 +22,30 @@ bool Push(SqStack *&s, char * e);
 bool Pop(SqStack *&s, char * &e);
 bool GetTop(SqStack *s, char * &e);
 
+//定义文法
+char grammar[7][2][4] = {
+		{ "S", "v=E" },
+		{ "E", "E+T" },
+		{ "E", "T" },
+		{ "T", "T*F" },
+		{ "T", "F" },
+		{ "F", "(E)" },
+		{ "F", "n" }
+};
+
 //定义分析表
 char table[15][12][MaxChar] = {
 		{ " ", "n", "+", "*", "(", ")", "#", "=", "v", "E", "T", "F" },
 		{ "S00", " ", " ", " ", " ", " ", " ", " ", "S01", " ", " ", " " },
 		{ "S01", " ", " ", " ", " ", " ", " ", "S02", " ", " ", " ", " " },
-		{ "S02", "S07", " ", " ", "S06", " ", " ", " ", "S07", "S03", "S04", "S05" },
+		{ "S02", "S07", " ", " ", "S06", " ", " ", " ", " ", "S03", "S04", "S05" },
 		{ "S03", " ", "S08", " ", " ", " ", "acc", " ", " ", " ", " ", " " },
 		{ "S04", " ", "r2", "S09", " ", "r2", "r2", " ", " ", " ", " ", " " },
 		{ "S05", " ", "r4", "r4", " ", "r4", "r4", " ", " ", " ", " ", " " },
-		{ "S06", "S07", " ", " ", "S06", " ", " ", " ", "S07", "S10", "S04", "S05" },
+		{ "S06", "S07", " ", " ", "S06", " ", " ", " ", " ", "S10", "S04", "S05" },
 		{ "S07", " ", "r6", "r6", " ", "r6", "r6", " ", " ", " ", " ", " " },
-		{ "S08", "S07", " ", " ", "S06", " ", " ", " ", "S07", " ", "S11", "S05" },
-		{ "S09", "S07", " ", " ", "S06", " ", " ", " ", "S07", " ", " ", "S12" },
+		{ "S08", "S07", " ", " ", "S06", " ", " ", " ", " ", " ", "S11", "S05" },
+		{ "S09", "S07", " ", " ", "S06", " ", " ", " ", " ", " ", " ", "S12" },
 		{ "S10", " ", "S08", " ", " ", "S13", " ", " ", " ", " ", " ", " " },
 		{ "S11", " ", "r1", "S09", " ", "r1", "r1", " ", " ", " ", " ", " " },
 		{ "S12", " ", "r3", "r3", " ", "r3", "r3", " ", " ", " ", " ", " " },
@@ -43,10 +55,18 @@ char table[15][12][MaxChar] = {
 int main(void)
 {
 	int i = 0;
-	printf("SLR(1) analysis table:\n");			//输出分析表
-	for (int i = 0; i < 13; i++)
+	printf("Grammar:\n");
+	for (int i = 0; i < 7; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		printf("%4s ", grammar[i][0]);
+		printf("->");
+		printf("%4s ", grammar[i][1]);
+		printf("\n");
+	}
+	printf("\nLR(1) analysis table:\n");			//输出分析表
+	for (int i = 0; i < 15; i++)
+	{
+		for (int j = 0; j < 12; j++)
 			printf("%4s ", table[i][j]);
 		printf("\n");
 	}
@@ -133,15 +153,8 @@ int main(void)
 			strcpy_s(goTo, " ");
 		else if (action[0] == 'r')
 		{
-			switch (action[1])
-			{
-			case '1': Location('E', stateStack->data[stateStack->top - 3], x, y); break;
-			case '2': Location('E', stateStack->data[stateStack->top - 1], x, y); break;
-			case '3': Location('T', stateStack->data[stateStack->top - 3], x, y); break;
-			case '4': Location('T', stateStack->data[stateStack->top - 1], x, y); break;
-			case '5': Location('F', stateStack->data[stateStack->top - 3], x, y); break;
-			case '6': Location('F', stateStack->data[stateStack->top - 1], x, y); break;
-			}
+			int gindex = atoi(&action[1]);
+			Location(grammar[gindex][0][0], stateStack->data[stateStack->top - strlen(grammar[gindex][1])], x, y);
 			strcpy_s(goTo, table[y][x]);
 		}
 
@@ -157,7 +170,7 @@ int main(void)
 		printf("\n");
 		printf("%s\t\t\t%s\n\n", action, goTo);
 
-		char * pop;
+		char * pop;															//求下一步状态
 		if (action[0] == 'a')
 			printf("赋值语句分析成功\n");
 		else if (action[0] == 'S')
@@ -171,15 +184,13 @@ int main(void)
 		}
 		else if (action[0] == 'r')
 		{
-			switch (action[1])
+			int gindex = atoi(&action[1]);
+			for (i = 0; i < strlen(grammar[gindex][1]); i++)
 			{
-			case '1': Pop(stateStack, pop); Pop(stateStack, pop); Pop(stateStack, pop); Pop(symbolStack, pop); Pop(symbolStack, pop); Pop(symbolStack, pop); Push(symbolStack, "E"); break;
-			case '2': Pop(stateStack, pop); Pop(symbolStack, pop); Push(symbolStack, "E"); break;
-			case '3': Pop(stateStack, pop); Pop(stateStack, pop); Pop(stateStack, pop); Pop(symbolStack, pop); Pop(symbolStack, pop); Pop(symbolStack, pop); Push(symbolStack, "T"); break;
-			case '4': Pop(stateStack, pop); Pop(symbolStack, pop); Push(symbolStack, "T"); break;
-			case '5': Pop(stateStack, pop); Pop(stateStack, pop); Pop(stateStack, pop); Pop(symbolStack, pop); Pop(symbolStack, pop); Pop(symbolStack, pop); Push(symbolStack, "F"); break;
-			case '6': Pop(stateStack, pop); Pop(symbolStack, pop); Push(symbolStack, "F"); break;
+				Pop(stateStack, pop);
+				Pop(symbolStack, pop);
 			}
+			Push(symbolStack, grammar[gindex][0]);
 			Push(stateStack, goTo);
 		}
 	}
