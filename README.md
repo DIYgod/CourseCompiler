@@ -32,6 +32,8 @@ LR(1)分析法的实现
 
 + 实现词法分析语法分析过程的展示
 
++ Update 2014.11.24  对语法分析模块略改动，实现自定义文法，使分析对象不局限于赋值语句
+
 Blog
 -------
 + <a href="http://www.anotherhome.net/">Anotherhome</a>
