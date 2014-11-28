@@ -12,15 +12,15 @@
 -------
 
 + 编译说明：
-
-	`flex lex.l`
-	`bison -d yacc.y`
-	删除 `yacc.tab.h` 第56行: `extern YYSTYPE yylval;`
-	`gcc -std=c99 head.h lex.yy.c yacc.tab.c`
-	`./a.out`
-
+```
+	flex lex.l
+	bison -d yacc.y
+	删除 yacc.tab.h 第56行: extern YYSTYPE yylval;
+	gcc -std=c99 head.h lex.yy.c yacc.tab.c
+	./a.out
+```
 + 文件说明：
-
+```
 	lex.l:                lex程序文件。
 	yacc.y:               yacc程序文件。
 	head.h:               lex.l和yacc.y共同使用的头文件。
@@ -28,35 +28,35 @@
 	yacc.tab.c:           用yacc编译yacc.y后生成的C文件。
 	yacc.tab.h:           用yacc编译yacc.y后生成的C头文件，内含%token、YYSTYPE、yylval等定义，供lex.yy.c和yacc.tab.c使用。
 	test.txt:             被解析的文本示例。
-
+```
 + 版本说明： 
-
+```
 	V0.1 词法分析  V0.2 增加语法分析  V0.3 增加语义分析
-
+```
 + 更新日志：
-
+```
 	Update 2014.11.28  实现语义分析
 	Update 2014.11.29  移植到Linux；实现执行多条赋值语句
-
+```
 + 计划：
-
+```
 	实现对带 "or" "and" 的布尔表达式的语义分析
-
+```
 
 
 LR(1)分析法的实现
 -------
 
 + 文件说明：
-
+```
 	lex.cpp 进行词法分析
 	syn.cpp 调用 lex.cpp 并进行语法分析
 	test.txt 被解析的文本示例
-
+```
 + 更新日志：
-
+```
 	Update 2014.11.24  对语法分析模块略改动，实现自定义文法
-
+```
 
 
 Blog
