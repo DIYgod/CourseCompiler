@@ -1,7 +1,4 @@
 %{
-	#include <stdio.h>
-	#include <stdlib.h>
-	#include <string.h>
 	#include "yacc.tab.h"
 	#include "head.h"
 	

@@ -64,9 +64,6 @@
 /* Copy the first part of user declarations.  */
 #line 1 "yacc.y" /* yacc.c:339  */
 
-	#include <stdio.h>
-	#include <stdlib.h>
-	#include <string.h>
 	#include "head.h"
 
 	
@@ -79,7 +76,7 @@
 	
 	extern varIndex iVar[50];
 
-#line 83 "yacc.tab.c" /* yacc.c:339  */
+#line 80 "yacc.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -130,7 +127,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 134 "yacc.tab.c" /* yacc.c:358  */
+#line 131 "yacc.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -427,8 +424,8 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    31,    31,    46,    54,    64,    74,    78,    87,    91,
-      92,    93,    94,   106,   118,   130
+       0,    28,    28,    43,    51,    61,    71,    75,    84,    88,
+      89,    90,    91,   103,   115,   127
 };
 #endif
 
@@ -1215,7 +1212,7 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 32 "yacc.y" /* yacc.c:1646  */
+#line 29 "yacc.y" /* yacc.c:1646  */
     {
 			printf("\n\n\nIntermediate code:\n");
 			for (int i = 0; i < 20; i++)
@@ -1227,33 +1224,33 @@ yyreduce:
 					break;
 			}
 		}
-#line 1231 "yacc.tab.c" /* yacc.c:1646  */
+#line 1228 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 47 "yacc.y" /* yacc.c:1646  */
+#line 44 "yacc.y" /* yacc.c:1646  */
     {
 			strcpy(inter[interstep][1], "<"); 
 			strcpy(inter[interstep][2], iVar[(yyvsp[-2].id)].name); 
 			strcpy(inter[interstep][3], iVar[(yyvsp[0].id)].name);
 			interstep++;
 		}
-#line 1242 "yacc.tab.c" /* yacc.c:1646  */
+#line 1239 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 55 "yacc.y" /* yacc.c:1646  */
+#line 52 "yacc.y" /* yacc.c:1646  */
     {
 			strcpy(inter[interstep][1], ">"); 
 			strcpy(inter[interstep][2], iVar[(yyvsp[-2].id)].name); 
 			strcpy(inter[interstep][3], iVar[(yyvsp[0].id)].name);
 			interstep++;
 		}
-#line 1253 "yacc.tab.c" /* yacc.c:1646  */
+#line 1250 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 65 "yacc.y" /* yacc.c:1646  */
+#line 62 "yacc.y" /* yacc.c:1646  */
     {
 			interassign1 = interstep;
 			strcpy(inter[interstep][1], "=");
@@ -1263,11 +1260,11 @@ yyreduce:
 			interstep++;
 			strcpy(inter[0][4], inter[interstep][0]);
 		}
-#line 1267 "yacc.tab.c" /* yacc.c:1646  */
+#line 1264 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 79 "yacc.y" /* yacc.c:1646  */
+#line 76 "yacc.y" /* yacc.c:1646  */
     {
 			strcpy(inter[interstep][1], "=");
 			strcpy(inter[interstep][2], iVar[(yyvsp[-3].id)].name);
@@ -1276,29 +1273,29 @@ yyreduce:
 			strcpy(inter[interassign1][4], inter[interstep + 1][0]);
 			interstep++;
 		}
-#line 1280 "yacc.tab.c" /* yacc.c:1646  */
+#line 1277 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 91 "yacc.y" /* yacc.c:1646  */
+#line 88 "yacc.y" /* yacc.c:1646  */
     {strcpy((yyval.name), iVar[(yyvsp[0].id)].name);}
-#line 1286 "yacc.tab.c" /* yacc.c:1646  */
+#line 1283 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 92 "yacc.y" /* yacc.c:1646  */
+#line 89 "yacc.y" /* yacc.c:1646  */
     {sprintf((yyval.name), "%d" , (yyvsp[0].id));}
-#line 1292 "yacc.tab.c" /* yacc.c:1646  */
+#line 1289 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 93 "yacc.y" /* yacc.c:1646  */
+#line 90 "yacc.y" /* yacc.c:1646  */
     {strcpy((yyval.name), (yyvsp[-1].name));}
-#line 1298 "yacc.tab.c" /* yacc.c:1646  */
+#line 1295 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 95 "yacc.y" /* yacc.c:1646  */
+#line 92 "yacc.y" /* yacc.c:1646  */
     {
 			strcpy(inter[interstep][1], "+");
 			strcpy(inter[interstep][2], (yyvsp[-2].name));
@@ -1310,11 +1307,11 @@ yyreduce:
 			strcpy((yyval.name), inter[interstep][4]);
 			interstep++;
 		}
-#line 1314 "yacc.tab.c" /* yacc.c:1646  */
+#line 1311 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 107 "yacc.y" /* yacc.c:1646  */
+#line 104 "yacc.y" /* yacc.c:1646  */
     {
 			strcpy(inter[interstep][1], "-");
 			strcpy(inter[interstep][2], (yyvsp[-2].name));
@@ -1326,11 +1323,11 @@ yyreduce:
 			strcpy((yyval.name), inter[interstep][4]);
 			interstep++;
 		}
-#line 1330 "yacc.tab.c" /* yacc.c:1646  */
+#line 1327 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 119 "yacc.y" /* yacc.c:1646  */
+#line 116 "yacc.y" /* yacc.c:1646  */
     {
 			strcpy(inter[interstep][1], "*");
 			strcpy(inter[interstep][2], (yyvsp[-2].name));
@@ -1342,11 +1339,11 @@ yyreduce:
 			strcpy((yyval.name), inter[interstep][4]);
 			interstep++;
 		}
-#line 1346 "yacc.tab.c" /* yacc.c:1646  */
+#line 1343 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 131 "yacc.y" /* yacc.c:1646  */
+#line 128 "yacc.y" /* yacc.c:1646  */
     {
 			strcpy(inter[interstep][1], "/");
 			strcpy(inter[interstep][2], (yyvsp[-2].name));
@@ -1358,11 +1355,11 @@ yyreduce:
 			strcpy((yyval.name), inter[interstep][4]);
 			interstep++;
 		}
-#line 1362 "yacc.tab.c" /* yacc.c:1646  */
+#line 1359 "yacc.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1366 "yacc.tab.c" /* yacc.c:1646  */
+#line 1363 "yacc.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1590,7 +1587,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 144 "yacc.y" /* yacc.c:1906  */
+#line 141 "yacc.y" /* yacc.c:1906  */
 
 
 void yyerror(char *s)

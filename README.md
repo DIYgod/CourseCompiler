@@ -11,6 +11,18 @@
 使用Yacc Lex自动构造工具的实现
 -------
 
++ 编译说明：
+
+	`flex lex.l`
+
+	`bison -d yacc.y`
+
+	删除 `yacc.tab.h` 第56行: `extern YYSTYPE yylval;`
+
+	`gcc -std=c99 head.h lex.yy.c yacc.tab.c`
+
+	`./a.out`
+
 + `pl0.h` 为Yacc的源文件，生成`pl0.tab.c` `pl0.tab.h`
 
 + `pl0.l` 为Lex的源文件，生成`lex.yy.c`
@@ -22,6 +34,10 @@
 + 版本说明： V0.1 词法分析  V0.2 增加语法分析  V0.3 增加语义分析
 
 + Update 2014.11.28  实现语义分析！！！
+
++ Update 2014.11.29  移植到Linux；实现执行多条赋值语句
+
++ 计划：实现对带 "or" "and" 的布尔表达式的语义分析
 
 
 
