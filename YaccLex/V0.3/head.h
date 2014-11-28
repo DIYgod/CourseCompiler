@@ -10,3 +10,5 @@ typedef struct
 } yys; 
 
 #define YYSTYPE yys
+
+extern YYSTYPE yylval;
