@@ -41,6 +41,17 @@
 ```
 + 语义分析效果
 
+输入：
+```
+if (a>b and c<a or c<d and c>a)
+then 
+	a=3+(7*8);
+	c=a+b; 
+else 
+	b=4+7*9;
+	test1=9*1+3;
+```
+输出：
 ![image](http://raw.github.com/DIYgod/Compiler/master/YaccLex/SemanticAnalysis.png)
 
 LR(1)分析法的实现
