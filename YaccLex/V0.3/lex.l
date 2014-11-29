@@ -13,14 +13,13 @@
 
 %% 
 
-if|then|else {count++; printf("%d\tKeyword\t%s\n", count, yytext); return *yytext;}
+if|then|else|and|or {count++; printf("%d\tKeyword\t%s\n", count, yytext); return *yytext;}
 [A-Za-z]([A-Za-z0-9])* {yylval.id = addvar(yytext); count++; printf("%d\tVariable\t%s\n", count, yytext); return Var;}
 [0-9]+ {yylval.id = atoi(yytext); count++; printf("%d\tConstant\t%s\n", count, yytext); return Constant;}
 [-+*\=<>] {count++; printf("%d\tOperators\t%s\n", count, yytext); return *yytext;}
 [();] {count++; printf("%d\tDelimiter\t%s\n", count, yytext); return *yytext;}
-[\n] {return *yytext;}
-[" "\t]+ {/*do nothing*/}
-[^-+*\=()<>;" "\t\nIdentfierConstant] {printf("\t\t%s\t", yytext); yyerror("Unknown");}
+[" "\t\n]+ {/*do nothing*/}
+[^-+*\=()<>;" "\t\nA-Za-z0-9] {printf("\t\t%s\t", yytext); yyerror("Unknown");}
 
 %%
 
@@ -28,6 +27,7 @@ int main(void)
 {
 	yyin = fopen("test.txt", "r");
 	yyparse();
+	printf("----------THE END----------\n");
 	fclose(yyin);
 	return 0;
 }

@@ -7,10 +7,17 @@ typedef struct {
 	char name[10];
 } varIndex;
 
+
+typedef struct {
+	int firststep;
+	int laststep;
+} ibooltype;
+
 typedef struct
 {  
-    char name[20];
-    int id;
+	char name[20];
+	int id;
+	ibooltype booltype;
 } yys; 
 
 #define YYSTYPE yys
