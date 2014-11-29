@@ -36,13 +36,11 @@
 + 更新日志：
 ```
 	Update 2014.11.28  实现语义分析
-	Update 2014.11.29  移植到Linux；实现分析多条赋值语句
+	Update 2014.11.29  移植到Linux；实现多条赋值语句的语义分析
+	Update 2014.11.29  实现对带 "or" "and" 的布尔表达式的语义分析
 ```
-+ 计划：
-```
-	实现对带 "or" "and" 的布尔表达式的语义分析
-```
-
++ 语义分析效果
+![image](https://github.com/DIYgod/Compiler/tree/master/YaccLex/SemanticAnalysis.png)
 
 LR(1)分析法的实现
 -------
