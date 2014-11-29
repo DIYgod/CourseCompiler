@@ -41,7 +41,7 @@
 ```
 + 语义分析效果
 
-![image](https://github.com/DIYgod/Compiler/tree/master/YaccLex/SemanticAnalysis.png)
+![image](http://raw.github.com/DIYgod/Compiler/master/YaccLex/SemanticAnalysis.png)
 
 LR(1)分析法的实现
 -------
