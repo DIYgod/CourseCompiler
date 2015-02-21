@@ -72,3 +72,7 @@ LR(1)分析法的实现
 Blog
 -------
 + [Anotherhome](http://www.anotherhome.net)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/DIYgod/coursecompiler/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
